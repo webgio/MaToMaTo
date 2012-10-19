@@ -1,0 +1,247 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Class="MaToMaTo.Pomodoro"
+	x:Name="Window"
+	Title="Pomodoro"
+	Width="280" Height="280" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" MouseLeave="Window_MouseLeave" MouseEnter="Window_MouseEnter" PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown" Topmost="True" Loaded="Window_Loaded" Unloaded="Window_Unloaded" mc:Ignorable="d" Icon="/MaToMaTo;component/matomato.ico">
+    <Window.Resources>
+        <!--
+        <Storyboard x:Key="TomatoTic" AutoReverse="True">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0.3"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="TomatoToc">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.2"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="TomatoBig" AutoReverse="True">
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1.2"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1.2"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>-->
+        <!--<Storyboard x:Key="TomatoMove">
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames AutoReverse="True" BeginTime="00:00:00" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="14"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>-->
+        <Storyboard x:Key="GridMove">
+            <DoubleAnimationUsingKeyFrames AutoReverse="False" BeginTime="00:00:00" Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="-20"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.0000000" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="20"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.0000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="GridBig">
+            <DoubleAnimationUsingKeyFrames AutoReverse="False" BeginTime="00:00:00" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1.1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.0000000" Value="1.0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1.1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.0000000" Value="1.0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames AutoReverse="False" BeginTime="00:00:00" Storyboard.TargetName="imgTomato" Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1.1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.0000000" Value="1.0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1.1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.0000000" Value="1.0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="KillGrid" Completed="Storyboard_Completed">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="gridPrincipal" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0.5"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0.2"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0.1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="gridPrincipal" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0.5"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0.2"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0.1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Img_Over">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgExit" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgPlay" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgStop" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Config_Activate">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pnlConfig" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Config_Deactivate">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pnlConfig" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Img_NonOver">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgExit" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0.00"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgPlay" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0.00"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgStop" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0.00"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OkTomato">
+        	<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="imgOk" Storyboard.TargetProperty="(UIElement.Visibility)">
+        		<DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgOk" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="2.189"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgOk" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="2.189"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgOk" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="20.409"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgOk" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="9.697"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<PointAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgOk" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)">
+        		<SplinePointKeyFrame KeyTime="00:00:00" Value="0.5,0.5"/>
+        		<SplinePointKeyFrame KeyTime="00:00:00.2000000" Value="0.716,0.607"/>
+        	</PointAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imgOk" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.4000000" Value="-5"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="5"/>
+        		<SplineDoubleKeyFrame KeyTime="00:00:01.0000000" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.2000000" Value="-5"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.4000000" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.6000000" Value="5"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.8000000" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.0000000" Value="-5"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.2000000" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.4000000" Value="5"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.6000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+
+    </Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			
+		</EventTrigger>
+	</Window.Triggers>
+    <Grid x:Name="gridPrincipal" RenderTransformOrigin="0.5,0.5">
+        <Grid.LayoutTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.LayoutTransform>
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid x:Name="grid" Margin="0" RenderTransformOrigin="0.5,0.5">
+            <Grid.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.LayoutTransform>
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Image Source="matomato.png" ToolTip="I am a tomato soup :)" Stretch="Fill" x:Name="imgTomato" RenderTransformOrigin="0.5,0.5" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+                <Image.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.LayoutTransform>
+            </Image>
+            <Label Height="44" Margin="68,0,63,51" x:Name="lblTime" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="26" FontWeight="Normal" FlowDirection="LeftToRight" Foreground="Black" RenderTransformOrigin="0.5,0.5" Content="25.00">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+                <Label.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.LayoutTransform>
+            </Label>
+        </Grid>
+        <Grid x:Name="grid2" Margin="0">
+            <Image Height="29" Opacity="0.00" ToolTip="Exit" Margin="68,0,0,25" Source="exit.png" x:Name="imgExit" Stretch="Fill" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="30" MouseLeftButtonDown="imgExit_MouseLeftButtonDown" />
+            <Image Height="33" Opacity="0.00" ToolTip="Stop tomato"  Source="stop.png" HorizontalAlignment="Right" Margin="0,0,59,25" x:Name="imgStop" Stretch="Fill" VerticalAlignment="Bottom" Width="38" MouseLeftButtonDown="imgStop_MouseLeftButtonDown" />
+            <Image Height="39" Opacity="0.00" ToolTip="Start tomato"  Source="go.png" HorizontalAlignment="Right" Margin="0,0,24,61" x:Name="imgPlay" Stretch="Fill" VerticalAlignment="Bottom" Width="36" MouseLeftButtonDown="imgPlay_MouseLeftButtonDown"  />
+            <Image Margin="111,116,108,97" x:Name="imgOk" Stretch="Fill" Source="ThatsOk.png" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+            	<Image.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform/>
+            			<SkewTransform/>
+            			<RotateTransform/>
+            			<TranslateTransform/>
+            		</TransformGroup>
+            	</Image.RenderTransform>
+            </Image>
+            <StackPanel Opacity="0.0" Margin="44,80,26,61" Name="pnlConfig">
+                <CheckBox Height="20" Margin="0,10,0,0" Name="chkAnimation" Width="90">Animation?</CheckBox>
+                <CheckBox Height="20" Margin="0,10,0,0" Name="chkFront" Width="90">In front?</CheckBox>
+                <CheckBox Height="20" Margin="0,10,0,0" Name="chkLittle" Width="90">Little tomato?</CheckBox>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
