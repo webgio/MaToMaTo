@@ -23,6 +23,7 @@ namespace MaToMaTo
         DispatcherTimer dispatcherTimerAn = new DispatcherTimer();
         TimeSpan _ts;
         Storyboard _st;
+        FrameworkElement _title;
 
         public Pomodoro()
         {
@@ -30,6 +31,12 @@ namespace MaToMaTo
         }
 
         #region window
+
+        private void title_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
         private void Window_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.Source.GetType().IsSubclassOf(typeof(Window)) || (e.Source.GetType().Equals(typeof(Image)) && ((System.Windows.FrameworkElement)(e.Source)).Name == "imgTomato")) DragMove();
@@ -76,6 +83,11 @@ namespace MaToMaTo
             _ts = new TimeSpan(0, 25, 0);
             lblTime.Content = _ts.Minutes + "." + _ts.Seconds.ToString().PadLeft(2, '0');
             _st = (Storyboard)this.Resources["GridMove"];
+            this._title = (FrameworkElement)this.Template.FindName("grid2", this);
+            if (null != this._title)
+            {
+                this._title.MouseLeftButtonDown += new MouseButtonEventHandler(title_MouseLeftButtonDown);
+            }
             _st.Begin();
             dispatcherTimer.Start();
             dispatcherTimerAn.Start();
